@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Free Fire UID Checker</title>
+
+<style>
+
+body{
+background:#0f172a;
+color:white;
+font-family:Arial;
+text-align:center;
+margin-top:100px;
+}
+
+input{
+padding:10px;
+border-radius:6px;
+border:none;
+}
+
+button{
+padding:10px 20px;
+background:#22c55e;
+border:none;
+color:white;
+border-radius:6px;
+cursor:pointer;
+}
+
+#result{
+margin-top:30px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Free Fire UID Info</h1>
+
+<input id="uid" placeholder="Enter Player UID">
+
+<button onclick="checkUID()">Check</button>
+
+<div id="result"></div>
+
+<script>
+
+async function checkUID(){
+
+let uid=document.getElementById("uid").value;
+
+let api="https://proapis.hlgamingofficial.com/main/games/freefire/account/api?sectionName=AccountInfo&PlayerUid="+uid+"&region=bd&useruid=demo&api=demo";
+
+let res=await fetch(api);
+
+let data=await res.json();
+
+let name=data.result.AccountInfo.AccountName;
+let level=data.result.AccountInfo.AccountLevel;
+
+document.getElementById("result").innerHTML=
+
+"Player Name: "+name+"<br>"+
+"Level: "+level;
+
+}
+
+</script>
+
+</body>
+</html>
